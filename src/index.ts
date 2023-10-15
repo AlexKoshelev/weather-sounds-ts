@@ -3,31 +3,46 @@ import summerSound from "./assets/sounds/summer.mp3";
 import rainSound from "./assets/sounds/rain.mp3";
 import winterSound from "./assets/sounds/winter.mp3";
 /* html элементы */
-const main = document.querySelector("main");
-const buttonsWrapper = main.querySelector("section");
-const buttonSun = buttonsWrapper.querySelector(`[data-id="sun"]`);
-const buttonRain = buttonsWrapper.querySelector(`[data-id="rain"]`);
-const buttonWinter = buttonsWrapper.querySelector(`[data-id="winter"]`);
-const sunIcon = buttonSun.querySelector(".card-icon-sun");
-const rainIcon = buttonRain.querySelector(".card-icon-rain");
-const winterIcon = buttonWinter.querySelector(".card-icon-winter");
+const main: HTMLElement | null | undefined = document.querySelector(
+  "main"
+) as HTMLElement;
+const buttonsWrapper: HTMLElement | null | undefined =
+  main?.querySelector("section");
+const buttonSun: HTMLElement | null | undefined = buttonsWrapper?.querySelector(
+  `[data-id="sun"]`
+) as HTMLElement;
+const buttonRain: HTMLElement | null | undefined =
+  buttonsWrapper?.querySelector(`[data-id="rain"]`) as HTMLElement;
+const buttonWinter: HTMLElement | null | undefined =
+  buttonsWrapper?.querySelector(`[data-id="winter"]`);
+const sunIcon: HTMLElement | null | undefined = buttonSun?.querySelector(
+  ".card-icon-sun"
+) as HTMLElement;
+const rainIcon: HTMLElement | null | undefined = buttonRain?.querySelector(
+  ".card-icon-rain"
+) as HTMLElement;
+const winterIcon: HTMLElement | null | undefined = buttonWinter?.querySelector(
+  ".card-icon-winter"
+) as HTMLElement;
 /* отслеживание, какой звук сейчас играет */
-let sunPlay = false;
-let rainPlay = false;
-let winterPlay = false;
+let sunPlay: boolean = false;
+let rainPlay: boolean = false;
+let winterPlay: boolean = false;
 /* звуки */
-let audioSun = new Audio(summerSound);
-let audioRain = new Audio(rainSound);
-let audioWinter = new Audio(winterSound);
-const volumeSlider = document.getElementById("volume-slider");
+let audioSun: HTMLAudioElement = new Audio(summerSound);
+let audioRain: HTMLAudioElement = new Audio(rainSound);
+let audioWinter: HTMLAudioElement = new Audio(winterSound);
+const volumeSlider: HTMLInputElement = document.getElementById(
+  "volume-slider"
+) as HTMLInputElement;
 
-volumeSlider.addEventListener("input", () => {
-  audioSun.volume = volumeSlider.value;
-  audioRain.volume = volumeSlider.value;
-  audioWinter.volume = volumeSlider.value;
+volumeSlider?.addEventListener("input", () => {
+  audioSun.volume = +volumeSlider.value;
+  audioRain.volume = +volumeSlider.value;
+  audioWinter.volume = +volumeSlider.value;
 });
 /* три обработчика на каждую кнопку */
-buttonSun.addEventListener("click", (e) => {
+buttonSun?.addEventListener("click", (e) => {
   e.preventDefault();
   if (!sunPlay) {
     audioRain.pause();
@@ -47,7 +62,7 @@ buttonSun.addEventListener("click", (e) => {
   }
 });
 
-buttonRain.addEventListener("click", (e) => {
+buttonRain?.addEventListener("click", (e) => {
   e.preventDefault();
   if (!rainPlay) {
     audioWinter.pause();
@@ -67,7 +82,7 @@ buttonRain.addEventListener("click", (e) => {
   }
 });
 
-buttonWinter.addEventListener("click", (e) => {
+buttonWinter?.addEventListener("click", (e) => {
   e.preventDefault();
   if (!winterPlay) {
     audioSun.pause();
