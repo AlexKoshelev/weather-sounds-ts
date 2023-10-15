@@ -5,7 +5,7 @@ const path = require("path");
 
 module.exports = {
   context: path.resolve(__dirname, "src"),
-  entry: "./index.js",
+  entry: "./index.ts",
   output: {
     filename: "[name].[contenthash].bundle.js",
     path: path.resolve(__dirname, "dist"),
@@ -66,6 +66,8 @@ module.exports = {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: "asset/resource",
       },
+
+      { test: /\.ts$/, use: "ts-loader" },
     ],
   },
 };
